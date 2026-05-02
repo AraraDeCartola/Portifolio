@@ -24,123 +24,83 @@
             overflow-x: hidden;
         }
 
-        header {
-            text-align: center;
-            padding: 40px 20px 20px 20px;
-        }
+        header { text-align: center; padding: 40px 20px 20px 20px; }
 
         .logo-container {
-            width: 120px;
-            height: 120px;
+            width: 120px; height: 120px;
             background: var(--card-bg);
             border: 2px solid var(--accent-color);
             border-radius: 50%;
             margin: 0 auto 20px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             overflow: hidden;
         }
 
-        .logo-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .logo-container img { width: 100%; height: 100%; object-fit: cover; }
 
         .brand-name {
-            font-size: 2rem;
-            color: var(--accent-color);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin: 0;
+            font-size: 2rem; color: var(--accent-color);
+            letter-spacing: 3px; text-transform: uppercase; margin: 0;
         }
 
         nav {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            padding: 20px;
+            display: flex; justify-content: center; gap: 30px; padding: 20px;
             background: rgba(26, 22, 20, 0.95);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            position: sticky; top: 0; z-index: 100;
             border-bottom: 1px solid var(--border-color);
         }
 
         nav button {
-            background: none;
-            border: none;
-            color: var(--text-dim);
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: 0.3s;
+            background: none; border: none; color: var(--text-dim);
+            font-size: 1rem; font-weight: bold; cursor: pointer;
+            text-transform: uppercase; letter-spacing: 2px; transition: 0.3s;
         }
 
-        nav button.active {
-            color: var(--accent-color);
-            border-bottom: 2px solid var(--accent-color);
-        }
+        nav button.active { color: var(--accent-color); border-bottom: 2px solid var(--accent-color); }
 
-        .container {
-            max-width: 900px;
-            margin: 20px auto 40px auto;
-            padding: 20px;
-        }
+        .container { max-width: 900px; margin: 20px auto 40px auto; padding: 20px; }
 
         .view { display: none; }
         .view.active { display: block; animation: fadeIn 0.5s ease; }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         .price-grid { display: grid; gap: 20px; }
         .card {
-            background: var(--card-bg);
-            border-left: 4px solid var(--accent-color);
-            padding: 25px;
-            border-radius: 4px;
+            background: var(--card-bg); border-left: 4px solid var(--accent-color);
+            padding: 25px; border-radius: 4px;
         }
-        .price-tag { 
-            color: var(--accent-color); 
-            font-weight: bold; 
-            font-size: 1.2rem;
-            display: block;
-            margin-bottom: 5px;
-        }
+        .price-tag { color: var(--accent-color); font-weight: bold; font-size: 1.2rem; display: block; margin-bottom: 5px; }
+
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
         
-        h2 { margin: 0 0 10px 0; font-size: 1.4rem; }
-        ul { padding-left: 20px; color: var(--text-dim); }
-        li { margin-bottom: 5px; }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
         .model-card {
-            background: var(--card-bg);
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
+            background: var(--card-bg); border-radius: 8px; overflow: hidden;
+            border: 1px solid var(--border-color); display: flex; flex-direction: column;
         }
 
-        /* ESTILO DO VISUALIZADOR 3D */
-        model-viewer {
-            width: 100%;
-            height: 300px;
-            background-color: #120f0e;
-            --poster-color: transparent;
+        
+        .preview-area { width: 100%; height: 300px; background-color: #120f0e; overflow: hidden; position: relative; }
+        .preview-area model-viewer, .preview-area img, .preview-area iframe {
+            width: 100%; height: 100%; border: none; object-fit: contain;
         }
 
         .model-info { padding: 15px; }
+
+        
+        .itens-container {
+            display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;
+        }
+
+        .item-btn {
+            width: 40px; height: 40px; border-radius: 4px;
+            border: 1px solid var(--border-color); cursor: pointer;
+            background-size: cover; background-position: center;
+            transition: 0.2s;
+        }
+
+        .item-btn:hover { border-color: var(--accent-color); transform: scale(1.05); }
+        .item-btn.active { border-color: var(--accent-color); box-shadow: 0 0 5px var(--accent-color); }
 
         footer { text-align: center; padding: 40px; color: var(--text-dim); font-size: 0.9rem; }
     </style>
@@ -206,6 +166,11 @@ Alt costumes (fully other outfit) (Price may increase with complexity.)</li>
             <div class="portfolio-grid" id="portfolio-container"></div>
         </section>
 
+        <section id="view-portfolio" class="view">
+            <h1 style="text-align: center; color: var(--accent-color);">Model Showcase</h1>
+            <div class="portfolio-grid" id="portfolio-container"></div>
+        </section>
+
     </div>
 
     <footer>
@@ -221,52 +186,72 @@ Alt costumes (fully other outfit) (Price may increase with complexity.)</li>
             document.getElementById('btn-' + viewName).classList.add('active');
         }
 
-        // 1. LISTA DE MODELOS (Adicione os nomes dos arquivos .glb aqui!)
+        // --- LISTA DE MODELOS ---
         const meusModelos = [
             {
-                titulo: "Modelo 1",
-                descricao: "Descrição do modelo",
-                arquivoGLB: "REapercommteste.gltf" // Coloque o nome do arquivo que você exportou do Blockbench
-            },
-            {
-                titulo: "Modelo 2",
-                descricao: "Descrição do modelo",
-                arquivoGLB: "modelo2.glb"
-            },
-            {
-                titulo: "Modelo 3",
-                descricao: "Descrição do modelo",
-                arquivoGLB: "modelo3.glb"
-            },            
-            {
-                titulo: "Modelo 4",
-                descricao: "Descrição do modelo",
-                arquivoGLB: "modelo3.glb"
+                id: 0,
+                titulo: "Modelo1",
+                descricao: "Descrição",
+                itens: [
+                    { nome: "3D", tipo: "3d", arquivo: "fenetsukoEx2.glb", icone: "laranjanormal.png" },
+                    { nome: "Render PNG", tipo: "img", arquivo: "laranjatriste.png", icone: "laranjatriste.png" },
+                    { nome: "Youtube", tipo: "video", arquivo: "https://www.youtube.com/embed/ma9WyPrqbo4?si=fO2195uJIArxaiE5", icone: "laranjanormal.png" }
+                ]
             }
-            
         ];
 
-        // 2. FUNÇÃO PARA GERAR O PORTFÓLIO 3D NA TELA
+        
+        function mudarMidia(idModelo, tipo, arquivo, btn) {
+            const container = document.getElementById(`media-${idModelo}`);
+            
+            if (tipo === '3d') {
+                container.innerHTML = `<model-viewer src="${arquivo}" auto-rotate camera-controls shadow-intensity="1" autoplay></model-viewer>`;
+            } else if (tipo === 'img') {
+                container.innerHTML = `<img src="${arquivo}" alt="Preview">`;
+            } else if (tipo === 'video') {
+                container.innerHTML = `<iframe src="${arquivo}" allowfullscreen></iframe>`;
+            }
+
+            
+            const botoes = btn.parentElement.querySelectorAll('.item-btn');
+            botoes.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
         function carregarPortfolio() {
             const container = document.getElementById('portfolio-container');
             
-            container.innerHTML = meusModelos.map(modelo => `
+            container.innerHTML = meusModelos.map(modelo => {
+                const primeiro = modelo.itens[0];
+                let htmlInicial = "";
+
+               
+                if(primeiro.tipo === '3d') htmlInicial = `<model-viewer src="${primeiro.arquivo}" auto-rotate camera-controls autoplay></model-viewer>`;
+                else if(primeiro.tipo === 'img') htmlInicial = `<img src="${primeiro.arquivo}">`;
+                else if(primeiro.tipo === 'video') htmlInicial = `<iframe src="${primeiro.arquivo}" allowfullscreen></iframe>`;
+
+                return `
                 <div class="model-card">
-                    <model-viewer 
-                        src="${modelo.arquivoGLB}" 
-                        alt="${modelo.titulo}"
-                        auto-rotate 
-                        camera-controls 
-                        shadow-intensity="1"
-                        autoplay
-                        interaction-prompt="auto">
-                    </model-viewer>
+                    <div class="preview-area" id="media-${modelo.id}">
+                        ${htmlInicial}
+                    </div>
                     <div class="model-info">
                         <h3>${modelo.titulo}</h3>
                         <p style="font-size: 0.9rem; color: var(--text-dim);">${modelo.descricao}</p>
+                        
+                        <div class="itens-container">
+                            ${modelo.itens.map((item, idx) => `
+                                <div 
+                                    class="item-btn ${idx === 0 ? 'active' : ''}" 
+                                    style="background-image: url('${item.icone}')"
+                                    title="${item.nome}"
+                                    onclick="mudarMidia(${modelo.id}, '${item.tipo}', '${item.arquivo}', this)">
+                                </div>
+                            `).join('')}
+                        </div>
                     </div>
-                </div>
-            `).join('');
+                </div>`;
+            }).join('');
         }
 
         carregarPortfolio();
